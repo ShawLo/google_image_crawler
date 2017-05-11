@@ -11,6 +11,7 @@ class Downloader(threading.Thread):
 
     def __init__(self, parent=None):
         self.parent = parent
+        self.TIME_OUT = 3
         super(Downloader, self).__init__()
 
     def setDownloadInfo(self, _filename, _foldername, _url, _type):
@@ -22,7 +23,7 @@ class Downloader(threading.Thread):
         self.DIR = "Pictures"
         if not os.path.exists(self.DIR):
             os.mkdir(self.DIR)
-        
+
         self.DIR = os.path.join(self.DIR, self.folderName)
 
         if not os.path.exists(self.DIR):
@@ -51,11 +52,11 @@ class Downloader(threading.Thread):
             if len(self.url) == 0:
                 return
 
-            print "Preparing %s...." % self.fileName
+            # print "Preparing %s...." % self.fileName
 
             # print url
             req = urllib2.Request(self.url, headers={'User-Agent': header})
-            raw_img = urllib2.urlopen(req).read()
+            raw_img = urllib2.urlopen(req, timeout=self.TIME_OUT).read()
 
             f = open(savePath, 'wb')
             f.write(raw_img)
@@ -126,7 +127,7 @@ class ImageTaskMgr(object):
         # get the download url list from response
         self.DownList = self.getDownList(query)
         print "DownList: %d" % (len(self.DownList))
-
+        print "Start Download Imgaes of %s" % keyword
         threads = []
 
         while self.IsFinish(self.DownList):
@@ -151,10 +152,14 @@ class ImageTaskMgr(object):
 
         finish = int(round(time.time() * 1000))
         finishTime = (finish - start)/1000
-
+        
+        print "============================="
+        print "Search Result: %s" % keyword
+        print "============================="
         print "Success : %4d" % self.completeTask
         print "Fail    : %4d" % (len(self.DownList) - self.completeTask)
         print "Time Consume: %d sec" % finishTime
+        print "============================="
 
 
 # for unit test

@@ -2,11 +2,11 @@
 
 ## Usage
 
-Please take a look in UseExample.py
+Please take a look in UseExample.py, <br/>
 In the first comple lines, simply <br/><br/>
 `from ImageTaskMgr import ImageTaskMgr` <br/>
 
-`mgr = ImageTaskMgr("the keyworkd yout want to search")` <br/>
+`mgr = ImageTaskMgr("the keyword yout want to search")` <br/>
 
 That's all you need to know :) <br/>
 Simply & Perfect

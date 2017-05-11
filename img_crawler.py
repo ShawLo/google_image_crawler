@@ -8,6 +8,7 @@ import urllib2
 import os
 import cookielib
 import json
+import time
 
 def get_soup(url,header):
     return BeautifulSoup(urllib2.urlopen(urllib2.Request(url,headers=header)),'html.parser')
@@ -19,8 +20,7 @@ query= query.split()
 query='+'.join(query)
 
 url="https://www.google.co.in/search?q="+query+"&source=lnms&tbm=isch"
-print url
-
+start = int(round(time.time() * 1000))
 #add the directory for your image here
 DIR="Pictures"
 header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
@@ -33,8 +33,6 @@ for a in soup.find_all("div",{"class":"rg_meta"}):
     link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
     ActualImages.append((link,Type))
 
-print "ActualImages[0]: %s"%str(ActualImages[0])
-
 print  "there are total" , len(ActualImages),"images"
 
 if not os.path.exists(DIR):
@@ -46,8 +44,6 @@ if not os.path.exists(DIR):
 ###print images
 for i , (img , Type) in enumerate(ActualImages):
     try:
-        print img
-        print header
         req = urllib2.Request(img, headers={'User-Agent' : header})
         raw_img = urllib2.urlopen(req).read()
 
@@ -64,3 +60,8 @@ for i , (img , Type) in enumerate(ActualImages):
     except Exception as e:
         print "could not load : "+img
         print e
+
+finish = int(round(time.time() * 1000))
+finishTime = (finish - start)/1000
+
+print "Time: %d" % finishTime

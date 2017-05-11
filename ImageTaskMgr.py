@@ -11,7 +11,7 @@ class Downloader(threading.Thread):
 
     def __init__(self, parent=None):
         self.parent = parent
-        self.TIME_OUT = 3
+        self.TIME_OUT = 10
         super(Downloader, self).__init__()
 
     def setDownloadInfo(self, _filename, _foldername, _url, _type):

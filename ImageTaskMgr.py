@@ -20,6 +20,9 @@ class Downloader(threading.Thread):
         self.folderName = _foldername
         # init data params
         self.DIR = "Pictures"
+        if not os.path.exists(self.DIR):
+            os.mkdir(self.DIR)
+        
         self.DIR = os.path.join(self.DIR, self.folderName)
 
         if not os.path.exists(self.DIR):
@@ -48,7 +51,7 @@ class Downloader(threading.Thread):
             if len(self.url) == 0:
                 return
 
-            print "Downloading %s...." % self.fileName
+            print "Preparing %s...." % self.fileName
 
             # print url
             req = urllib2.Request(self.url, headers={'User-Agent': header})

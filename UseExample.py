@@ -2,4 +2,5 @@ from ImageTaskMgr import ImageTaskMgr
 
 # ImageTaskMgr how to use example
 # just put the keyword in the ImageTaskMgr constructor
-mgr = ImageTaskMgr("car")
+mgr = ImageTaskMgr("saorise ronan")
+mgr = ImageTaskMgr("teresa palmer")

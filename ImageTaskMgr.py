@@ -6,7 +6,6 @@ import json
 import urllib2
 import os
 import threading
-import chardet
 
 
 class Downloader(threading.Thread):

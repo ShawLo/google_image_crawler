@@ -1,9 +1,12 @@
+#coding=utf-8
+
 import time
 from bs4 import BeautifulSoup
 import json
 import urllib2
 import os
 import threading
+import chardet
 
 
 class Downloader(threading.Thread):
@@ -25,7 +28,7 @@ class Downloader(threading.Thread):
             os.mkdir(self.DIR)
 
         self.DIR = os.path.join(self.DIR, self.folderName)
-
+        self.DIR = unicode(self.DIR,'utf8')
         if not os.path.exists(self.DIR):
             os.mkdir(self.DIR)
 
@@ -152,7 +155,7 @@ class ImageTaskMgr(object):
 
         finish = int(round(time.time() * 1000))
         finishTime = (finish - start)/1000
-        
+
         print "============================="
         print "Search Result: %s" % keyword
         print "============================="
@@ -167,7 +170,8 @@ def main():
     # just put the keyword you want to search to the class
     # ImageTaskMgr will auto download images
     mgr = ImageTaskMgr("saorise ronan")
-    mgr = ImageTaskMgr("teresa palmer")
+    # for testing chinese character
+    mgr = ImageTaskMgr("瑟夏·羅南")
 
 if __name__ == "__main__":
     main()

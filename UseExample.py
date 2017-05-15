@@ -1,6 +1,10 @@
+#coding=utf-8
+
 from ImageTaskMgr import ImageTaskMgr
 
 # ImageTaskMgr how to use example
-# just put the keyword in the ImageTaskMgr constructor
+# just put the keyword you want to search to the class
+# ImageTaskMgr will auto download images
 mgr = ImageTaskMgr("saorise ronan")
-mgr = ImageTaskMgr("teresa palmer")
+# for testing chinese character
+mgr = ImageTaskMgr("瑟夏·羅南")

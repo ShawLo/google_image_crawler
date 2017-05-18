@@ -7,4 +7,4 @@ from ImageTaskMgr import ImageTaskMgr
 # ImageTaskMgr will auto download images
 mgr = ImageTaskMgr("saorise ronan")
 # for testing chinese character
-mgr = ImageTaskMgr("瑟夏·羅南")
+mgr.search("瑟夏·羅南")

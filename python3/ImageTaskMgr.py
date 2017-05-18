@@ -162,6 +162,9 @@ class ImageTaskMgr(object):
         print ("Time Consume: %d sec" % finishTime)
         print ("=============================")
 
+    def search(self, keyword):
+        self.__init__(keyword)
+
 
 # for unit test
 def main():
@@ -169,7 +172,7 @@ def main():
     # ImageTaskMgr will auto download images
     mgr = ImageTaskMgr("saorise ronan")
     # for testing chinese character
-    mgr = ImageTaskMgr("瑟夏·羅南")
+    mgr.search("瑟夏·羅南")
 
 if __name__ == "__main__":
     main()
